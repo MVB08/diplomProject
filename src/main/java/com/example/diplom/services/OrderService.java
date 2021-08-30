@@ -1,10 +1,8 @@
 package com.example.diplom.services;
 
 
-import com.example.diplom.entities.ApplianceEntity;
-import com.example.diplom.entities.OrderEntity;
-import com.example.diplom.repositories.ApplianceRepo;
-import com.example.diplom.repositories.OrderRepo;
+import com.example.diplom.entities.*;
+import com.example.diplom.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,8 @@ import java.util.Optional;
 public class OrderService {
 
     private final OrderRepo orderRepo;
-    private final ApplianceRepo applianceRepo;
+    private final CustomerRepo customerRepo;
+    private final WorkerRepo workerRepo;
 
     public List<OrderEntity> getAllOrders() {
         return orderRepo.findAll();
@@ -29,13 +28,14 @@ public class OrderService {
     }
 
 
-    public void init(Long orderId, String customerName, Long applId) {
+    public void init(Long orderId, Long customerId, Long workerId) {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setOrderId(orderId);
-        orderEntity.setCustomerName(customerName);
 
-        ApplianceEntity applianceEntity = applianceRepo.findById(applId).orElse(null);
-//        orderEntity.setApplianceEntityList(Arrays.asList(applianceEntity));
+        CustomerEntity customerEntity = customerRepo.findById(customerId).orElseThrow(() -> new RuntimeException("no such customer"));
+        orderEntity.setCustomerEntity(customerEntity);
+        WorkerEntity workerEntity = workerRepo.findById(workerId).orElseThrow(() -> new RuntimeException("no such worker"));
+        orderEntity.setWorkerEntity(workerEntity);
         orderRepo.save(orderEntity);
     }
 

@@ -15,26 +15,24 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
-    
+
     private final CustomerRepo customerRepo;
-    private  final OrderRepo orderRepo;
-    
-    public List<CustomerEntity> getAllCustomers() {        
+    private final OrderRepo orderRepo;
+
+    public List<CustomerEntity> getAllCustomers() {
         return customerRepo.findAll();
     }
 
-    public Optional<CustomerEntity> getByPhone(Long phone) {        
+    public Optional<CustomerEntity> getByPhone(Long phone) {
         return customerRepo.findById(phone);
     }
 
-    public void init(String customerName, Long phoneNumber, Long orderId) {
+    public void init(String customerName, Long phoneNumber) {
         CustomerEntity customerEntity = new CustomerEntity();
+
         customerEntity.setName(customerName);
         customerEntity.setPhoneNumber(phoneNumber);
 
-
-        OrderEntity orderEntity = orderRepo.findById(orderId).orElse(null);
-        customerEntity.setOrderEntityList(Arrays.asList(orderEntity));
         customerRepo.save(customerEntity);
     }
 }

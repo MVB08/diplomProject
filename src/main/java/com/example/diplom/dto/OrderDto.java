@@ -7,7 +7,6 @@ import lombok.Data;
 public class OrderDto {
 
     private Long orderId;
-    private String customerName;
-    private Long applianceId;
+
 
 }

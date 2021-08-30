@@ -24,7 +24,7 @@ public class WorkerEntity {
     String position;
     Long phoneNumber;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
     private List<OrderEntity> orderEntityList;
 }

@@ -17,10 +17,9 @@ import java.util.List;
 public class CustomerEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     Long phoneNumber;
     String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customerPhone_number")
-    private List<OrderEntity> orderEntityList;
 }

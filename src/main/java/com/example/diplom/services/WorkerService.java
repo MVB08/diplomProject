@@ -25,18 +25,16 @@ public class WorkerService {
 
 
     public Optional<WorkerEntity> getById(Long id) {
-      return workerRepo.findById(id);
+        return workerRepo.findById(id);
     }
 
-    public void init(Long workerId, String workerName, String position, Long phoneNumber, Long orderId) {
+    public void init(Long workerId, String workerName, String position, Long phoneNumber) {
         WorkerEntity workerEntity = new WorkerEntity();
         workerEntity.setId(workerId);
         workerEntity.setName(workerName);
         workerEntity.setPosition(position);
         workerEntity.setPhoneNumber(phoneNumber);
 
-        OrderEntity orderEntity = orderRepo.findById(orderId).orElse(null);
-        workerEntity.setOrderEntityList(Arrays.asList(orderEntity));
         workerRepo.save(workerEntity);
     }
 }

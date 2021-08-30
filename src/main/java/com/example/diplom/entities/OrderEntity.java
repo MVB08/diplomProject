@@ -20,10 +20,13 @@ public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
-    private String customerName;
 
-    @OneToMany(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "order_id")
-    private List<OrderLine> orderLines;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "worker_id")
+    private WorkerEntity workerEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customerEntity;
 
 }

@@ -23,10 +23,4 @@ public class ApplianceEntity {
     private String type;
     private String model;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-////    @JoinColumn(name = "appliance_id")
-//    private OrderEntity orderEntity;
-
-//    @ManyToMany(mappedBy = "appliance_entity")
-//    private List<OrderEntity> orderEntities = new ArrayList<>();
 }

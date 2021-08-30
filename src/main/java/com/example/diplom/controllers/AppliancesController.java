@@ -2,7 +2,7 @@ package com.example.diplom.controllers;
 
 import com.example.diplom.dto.ApplianceDto;
 import com.example.diplom.entities.ApplianceEntity;
-import com.example.diplom.initialization.InitializationApp;
+
 import com.example.diplom.services.ApplianceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class AppliancesController {
 
     private final ApplianceService applianceService;
-    private final InitializationApp initializationApp;
+
 
     @GetMapping("/getAll")
     public List<ApplianceEntity> getAllAppliance() {
@@ -36,12 +36,6 @@ public class AppliancesController {
     @GetMapping("/getByType/{type}")
     public List<ApplianceEntity> getByType(@PathVariable String type) {
         return applianceService.getByType(type);
-    }
-
-    @PostMapping("/init")
-    public String initAppliance() {
-        initializationApp.initAppliance();
-        return "Appliance initialized";
     }
 
     @PostMapping("/create")
