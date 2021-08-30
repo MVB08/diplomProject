@@ -32,11 +32,10 @@ public class ApplianceService {
         return applianceRepo.findByType(type);
     }
 
-
-    public void initApp(Long id, String type, String model) {
+    public void initApp(Long applianceId, String type, String model) {
 
         ApplianceEntity applianceEntity = new ApplianceEntity();
-        applianceEntity.setId(id);
+        applianceEntity.setId(applianceId);
         applianceEntity.setType(type);
         applianceEntity.setModel(model);
         applianceRepo.save(applianceEntity);

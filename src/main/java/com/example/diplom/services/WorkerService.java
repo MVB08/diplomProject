@@ -1,5 +1,6 @@
 package com.example.diplom.services;
 
+import com.example.diplom.dto.WorkerDto;
 import com.example.diplom.entities.ApplianceEntity;
 import com.example.diplom.entities.OrderEntity;
 import com.example.diplom.entities.WorkerEntity;
@@ -36,5 +37,33 @@ public class WorkerService {
         workerEntity.setPhoneNumber(phoneNumber);
 
         workerRepo.save(workerEntity);
+    }
+
+    public List<WorkerEntity> getByName(String name) {
+        return workerRepo.findByName(name);
+    }
+
+    public List<WorkerEntity> getByPhone(Long phone) {
+
+        return workerRepo.findByPhoneNumber(phone);
+    }
+
+    public void create(WorkerDto workerDto) {
+        if (
+               workerRepo.findByPhoneNumber(workerDto.getPhoneNumber()).isEmpty()){
+            init(workerDto.getId(), workerDto.getName(), workerDto.getPosition(), workerDto.getPhoneNumber());
+        } else {
+            throw new RuntimeException("such a phoneNumber already exists ");
+        }
+    }
+
+    public void deleteWorker(Long id) {
+        workerRepo.findById(id).orElseThrow(() -> new RuntimeException("There is no such worker"));
+        workerRepo.deleteById(id);
+    }
+
+    public void updateWorker(Long id, WorkerDto workerDto) {
+        workerRepo.findById(id).orElseThrow(() -> new RuntimeException("There is no such worker"));
+        create(workerDto);
     }
 }

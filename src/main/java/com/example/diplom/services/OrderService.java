@@ -1,6 +1,7 @@
 package com.example.diplom.services;
 
 
+import com.example.diplom.dto.OrderDto;
 import com.example.diplom.entities.*;
 import com.example.diplom.repositories.*;
 import lombok.RequiredArgsConstructor;
@@ -39,4 +40,26 @@ public class OrderService {
         orderRepo.save(orderEntity);
     }
 
+    public void create(OrderDto orderDto, Long customerId, Long workerId) {
+        if (
+                orderRepo.findById(orderDto.getOrderId()).isEmpty() &&
+                        customerRepo.findById(customerId).isPresent() &&
+                        workerRepo.findById(workerId).isPresent()) {
+            init(orderDto.getOrderId(), customerId, workerId);
+        } else {
+            throw new RuntimeException("enter the correct values");
+        }
+    }
+
+
+    public void deleteOrder(Long id) {
+        orderRepo.findById(id).orElseThrow(() -> new RuntimeException("no such order"));
+        orderRepo.deleteById(id);
+    }
+
+    public void updateOrder(OrderDto orderDto, Long customerId, Long workerId) {
+        orderRepo.findById(orderDto.getOrderId()).orElseThrow(() -> new RuntimeException(" no such order"));
+        init(orderDto.getOrderId(), customerId, workerId);
+
+    }
 }

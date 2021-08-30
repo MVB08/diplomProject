@@ -20,10 +20,10 @@ public class OrderLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long numberOfLine;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "appliance_id")
-    ApplianceEntity applianceEntity;
-    @ManyToOne(fetch = FetchType.LAZY)
+    private ApplianceEntity applianceEntity;
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     private OrderEntity orderEntity;
 }

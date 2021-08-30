@@ -1,6 +1,8 @@
 package com.example.diplom.controllers;
 
 
+import com.example.diplom.dto.CustomerDto;
+import com.example.diplom.dto.OrderDto;
 import com.example.diplom.entities.OrderEntity;
 ;
 import com.example.diplom.services.OrderService;
@@ -28,5 +30,22 @@ public class OrderController {
         return orderService.getById(id);
     }
 
+    @PostMapping("/create/{customerId}/{workerId}")
+    public String createOrder( @RequestBody OrderDto orderDto, @PathVariable Long customerId, @PathVariable Long workerId) {
+       orderService.create(orderDto, customerId, workerId);
+        return "Order created";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteOrder(@PathVariable Long id) {
+        orderService.deleteOrder(id);
+        return "Order deleted";
+    }
+
+    @PutMapping("/update/{customerId}/{workerId}")
+    private String updateOrder(@RequestBody OrderDto orderDto, @PathVariable Long customerId, @PathVariable Long workerId) {
+        orderService.updateOrder(orderDto, customerId, workerId);
+        return "Order updating";
+    }
 
 }

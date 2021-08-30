@@ -17,7 +17,7 @@ public class Initialization {
     private final WorkerService workerService;
 
     @PostConstruct
-    public void initAppliance() {
+    public void init() {
         applianceService.initApp(1L, "fridge", "Indesit");
         applianceService.initApp(2L, "fridge", "Atlant");
         applianceService.initApp(3L, "fridge", "Bosh");
@@ -41,22 +41,22 @@ public class Initialization {
         workerService.init(2L, "Anna", "Seller", 89042662626L);
         workerService.init(3L, "Valentin", "Seller", 89053211212L);
 
-        customerService.init("Pavel", 89112343434L);
-        customerService.init("Goga", 89213010101L);
-        customerService.init("Alex", 89400400044L);
-        customerService.init("Inna", 89215550404L);
+        customerService.init(1L,"Pavel", 89112343434L);
+        customerService.init(2L,"Goga", 89213010101L);
+        customerService.init(3L, "Alex", 89400400044L);
+        customerService.init(4L,"Inna", 89215550404L);
 
         orderService.init(1L, 1L, 1L);
         orderService.init(2L, 1L, 2L);
         orderService.init(3L, 1L, 2L);
         orderService.init(4L, 4L, 3L);
 
-        orderLineService.init(1L, 1L);
-        orderLineService.init(1L, 2L);
-        orderLineService.init(2L, 2L);
-        orderLineService.init(2L, 2L);
-        orderLineService.init(2L, 2L);
-        orderLineService.init(2L, 2L);
+        orderLineService.init(1L, 1L, 1L);
+        orderLineService.init(2L,1L, 2L);
+        orderLineService.init(3L,2L, 2L);
+        orderLineService.init(4L,2L, 2L);
+        orderLineService.init(5L,2L, 2L);
+        orderLineService.init(6L,2L, 2L);
     }
 
 }
