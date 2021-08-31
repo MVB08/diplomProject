@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+[{"id":2,"type":"fridge","model":"Atlant"},{"id":3,"type":"fridge","model":"Bosh"},{"id":4,"type":"tv","model":"Samsung"},{"id":5,"type":"tv","model":"LG"},{"id":6,"type":"tv","model":"Bosh"},{"id":7,"type":"teapot","model":"Redmond"},{"id":8,"type":"teapot","model":"Tefal"},{"id":9,"type":"teapot","model":"Bosh"},{"id":11,"type":"washing machine","model":"Samsung"},{"id":12,"type":"washing machine","model":"LG"},{"id":13,"type":"vacuum cleaner","model":"LG"},{"id":14,"type":"vacuum cleaner","model":"Karcher"},{"id":15,"type":"vacuum cleaner","model":"Polaris"},{"id":16,"type":"iron","model":"Tefal"},{"id":17,"type":"iron","model":"Karcher"},{"id":18,"type":"iron","model":"Polaris"},{"id":1,"type":"tv","model":"Indesit"}]
+----

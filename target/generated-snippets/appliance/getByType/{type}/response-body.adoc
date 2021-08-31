@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+[{"id":4,"type":"tv","model":"Samsung"},{"id":5,"type":"tv","model":"LG"},{"id":6,"type":"tv","model":"Bosh"},{"id":1,"type":"tv","model":"Indesit"}]
+----

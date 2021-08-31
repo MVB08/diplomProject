@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ http POST 'http://localhost:8080/appliance/create' \
+    'Content-Type:application/json'
+----

@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ http GET 'http://localhost:8080/appliance/getAll' \
+    'Content-Type:application/json'
+----
