@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+[{"numberOfLine":1},{"numberOfLine":2},{"numberOfLine":3},{"numberOfLine":4},{"numberOfLine":5},{"numberOfLine":6},{"numberOfLine":7}]
+----

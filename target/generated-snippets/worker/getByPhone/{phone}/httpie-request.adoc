@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ http GET 'http://localhost:8080/worker/getByPhone/89037727272' \
+    'Content-Type:application/json'
+----

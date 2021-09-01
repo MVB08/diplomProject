@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/orderLine/update/3/8' -i -X PUT \
+    -H 'Content-Type: application/json'
+----

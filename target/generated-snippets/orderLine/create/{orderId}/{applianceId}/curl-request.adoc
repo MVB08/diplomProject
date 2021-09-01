@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/orderLine/create/1/8' -i -X POST \
+    -H 'Content-Type: application/json'
+----

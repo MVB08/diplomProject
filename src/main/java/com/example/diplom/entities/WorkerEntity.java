@@ -1,5 +1,6 @@
 package com.example.diplom.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class WorkerEntity {
     String position;
     Long phoneNumber;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
     private List<OrderEntity> orderEntityList;

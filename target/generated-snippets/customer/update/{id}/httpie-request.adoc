@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ http PUT 'http://localhost:8080/customer/update/1' \
+    'Content-Type:application/json'
+----

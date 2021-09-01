@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+[{"id":1,"name":"Daniil","position":"Seller","phoneNumber":89037727272},{"id":2,"name":"Anna","position":"Seller","phoneNumber":89042662626},{"id":3,"name":"Valentin","position":"Seller","phoneNumber":89053211212}]
+----

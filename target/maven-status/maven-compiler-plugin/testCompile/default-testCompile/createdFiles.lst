@@ -1,0 +1,6 @@
+com\example\diplom\controllers\OrderLineControllerTest.class
+com\example\diplom\controllers\OrderControllerTest.class
+com\example\diplom\controllers\AppliancesControllerTest.class
+com\example\diplom\controllers\WorkerControllerTest.class
+com\example\diplom\DiplomApplicationTest.class
+com\example\diplom\controllers\CustomerControllerTest.class

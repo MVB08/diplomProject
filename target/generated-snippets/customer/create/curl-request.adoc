@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/customer/create' -i -X POST \
+    -H 'Content-Type: application/json'
+----
