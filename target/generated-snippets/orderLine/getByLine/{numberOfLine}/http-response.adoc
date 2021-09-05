@@ -2,7 +2,7 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 18
+Content-Length: 96
 
-{"numberOfLine":1}
+{"numberOfLine":1,"applianceEntity":{"id":1,"type":"1","model":"1"},"orderEntity":{"orderId":1}}
 ----

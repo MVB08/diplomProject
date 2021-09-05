@@ -1,4 +1,4 @@
 [source,options="nowrap"]
 ----
-{"numberOfLine":1}
+{"numberOfLine":1,"applianceEntity":{"id":1,"type":"1","model":"1"},"orderEntity":{"orderId":1}}
 ----

@@ -55,8 +55,12 @@ public class CustomerService {
         customerRepo.deleteById(id);
     }
 
-    public void updateCustomer(Long id, CustomerDto customerDto) {
-        customerRepo.findById(id).orElseThrow(() -> new RuntimeException("There is no such customer"));
-        create(customerDto);
+    public void updateCustomer(Long customerId, String customerName, Long phoneNumber) {
+       CustomerEntity customerEntity = customerRepo.findById(customerId).orElseThrow(() -> new RuntimeException("There is no such customer"));
+        customerEntity.setId(customerId);
+        customerEntity.setName(customerName);
+        customerEntity.setPhoneNumber(phoneNumber);
+        customerRepo.save(customerEntity);
+
     }
 }

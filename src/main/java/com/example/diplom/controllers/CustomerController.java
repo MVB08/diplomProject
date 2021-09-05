@@ -54,9 +54,9 @@ public class CustomerController {
         return "Customer deleted";
     }
 
-    @PutMapping("/update/{id}")
-    private String updateCustomer(@PathVariable Long id, @RequestBody CustomerDto customerDto) {
-        customerService.updateCustomer(id, customerDto);
-        return "Appliance updating";
+    @PutMapping("/update/{id}/{name}/{phoneNumber}")
+    private String updateCustomer(@PathVariable Long id, @PathVariable String name, @PathVariable Long phoneNumber) {
+        customerService.updateCustomer(id, name, phoneNumber);
+        return "Customer updating";
     }
 }

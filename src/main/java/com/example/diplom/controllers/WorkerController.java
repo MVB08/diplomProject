@@ -54,9 +54,9 @@ public class WorkerController {
         return "Worker deleted";
     }
 
-    @PutMapping("/update/{id}")
-    private String updateWorker(@PathVariable Long id, @RequestBody WorkerDto workerDto) {
-        workerService.updateWorker(id, workerDto);
+    @PutMapping("/update/{id}/{name}/{position}/{phoneNumber}")
+    private String updateWorker(@PathVariable Long id, @PathVariable String name, @PathVariable String position, @PathVariable Long phoneNumber) {
+        workerService.updateWorker(id, name, position, phoneNumber);
         return "Worker updating";
     }
 

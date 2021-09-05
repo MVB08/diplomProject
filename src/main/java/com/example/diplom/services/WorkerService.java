@@ -62,8 +62,12 @@ public class WorkerService {
         workerRepo.deleteById(id);
     }
 
-    public void updateWorker(Long id, WorkerDto workerDto) {
-        workerRepo.findById(id).orElseThrow(() -> new RuntimeException("There is no such worker"));
-        create(workerDto);
+    public void updateWorker(Long workerId, String name, String position, Long phoneNumber) {
+       WorkerEntity workerEntity = workerRepo.findById(workerId).orElseThrow(() -> new RuntimeException("There is no such worker"));
+        workerEntity.setId(workerId);
+        workerEntity.setName(name);
+        workerEntity.setPosition(position);
+        workerEntity.setPhoneNumber(phoneNumber);
+        workerRepo.save(workerEntity);
     }
 }

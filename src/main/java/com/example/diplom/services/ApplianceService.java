@@ -50,8 +50,11 @@ public class ApplianceService {
         applianceRepo.deleteById(id);
     }
 
-    public void updateAppliance(Long id, ApplianceDto applianceDto) {
-        applianceRepo.findById(id).orElseThrow(() -> new RuntimeException("There is no such appliance"));
-        create(applianceDto);
+    public void updateAppliance(Long applianceId, String applainceType, String applianceModel) {
+        ApplianceEntity applianceEntity = applianceRepo.findById(applianceId).orElseThrow(() -> new RuntimeException("There is no such appliance"));
+        applianceEntity.setId(applianceId);
+        applianceEntity.setType(applainceType);
+        applianceEntity.setModel(applianceModel);
+        applianceRepo.save(applianceEntity);
     }
 }

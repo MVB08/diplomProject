@@ -50,9 +50,9 @@ public class AppliancesController {
         return "Appliance deleted";
     }
 
-    @PutMapping("/update/{id}")
-    private String updateAppliance(@PathVariable Long id, @RequestBody ApplianceDto applianceDto) {
-        applianceService.updateAppliance(id, applianceDto);
+    @PutMapping("/update/{id}/{type}/{model}")
+    private String updateAppliance(@PathVariable Long id, @PathVariable String type, @PathVariable String model) {
+        applianceService.updateAppliance(id, type, model);
         return "Appliance updating";
     }
 

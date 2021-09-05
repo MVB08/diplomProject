@@ -2,7 +2,7 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 134
+Content-Length: 689
 
-[{"numberOfLine":1},{"numberOfLine":2},{"numberOfLine":3},{"numberOfLine":4},{"numberOfLine":5},{"numberOfLine":6},{"numberOfLine":7}]
+[{"numberOfLine":1,"applianceEntity":{"id":1,"type":"1","model":"1"},"orderEntity":{"orderId":1}},{"numberOfLine":2,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":1}},{"numberOfLine":3,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":2}},{"numberOfLine":4,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":2}},{"numberOfLine":5,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":2}},{"numberOfLine":6,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":2}},{"numberOfLine":7,"applianceEntity":{"id":8,"type":"teapot","model":"Tefal"},"orderEntity":{"orderId":1}}]
 ----
