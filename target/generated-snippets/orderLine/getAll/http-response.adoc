@@ -2,7 +2,7 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 689
+Content-Length: 743
 
-[{"numberOfLine":1,"applianceEntity":{"id":1,"type":"1","model":"1"},"orderEntity":{"orderId":1}},{"numberOfLine":2,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":1}},{"numberOfLine":3,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":2}},{"numberOfLine":4,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":2}},{"numberOfLine":5,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":2}},{"numberOfLine":6,"applianceEntity":{"id":2,"type":"2","model":"2"},"orderEntity":{"orderId":2}},{"numberOfLine":7,"applianceEntity":{"id":8,"type":"teapot","model":"Tefal"},"orderEntity":{"orderId":1}}]
+[{"numberOfLine":1,"applianceEntity":{"id":1,"type":"tv","model":"Bosh"},"orderEntity":{"orderId":1}},{"numberOfLine":2,"applianceEntity":{"id":2,"type":"fridge","model":"Atlant"},"orderEntity":{"orderId":1}},{"numberOfLine":3,"applianceEntity":{"id":2,"type":"fridge","model":"Atlant"},"orderEntity":{"orderId":2}},{"numberOfLine":4,"applianceEntity":{"id":2,"type":"fridge","model":"Atlant"},"orderEntity":{"orderId":2}},{"numberOfLine":5,"applianceEntity":{"id":2,"type":"fridge","model":"Atlant"},"orderEntity":{"orderId":2}},{"numberOfLine":6,"applianceEntity":{"id":2,"type":"fridge","model":"Atlant"},"orderEntity":{"orderId":2}},{"numberOfLine":7,"applianceEntity":{"id":8,"type":"teapot","model":"Tefal"},"orderEntity":{"orderId":1}}]
 ----

@@ -101,13 +101,13 @@ public class CustomerControllerTest {
 
     @Test
     public void updateCustomer() throws Exception {
-        String uri = "/customer/update/{id}";
+        String uri = "/customer/update/{id}/{name}/{phoneNumber}";
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setId(1L);
         customerEntity.setName("Leha");
         customerEntity.setPhoneNumber(89998887766L);
         String content = objectMapper.writeValueAsString(customerEntity);
-        mockMvc.perform(put(uri, 1L).contentType(MediaType.APPLICATION_JSON).content(content))
+        mockMvc.perform(put(uri, 1L, "Leha", 111L).contentType(MediaType.APPLICATION_JSON).content(content))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
 

@@ -108,13 +108,13 @@ public class AppliancesControllerTest {
     @Test
     public void updateAppliance() throws Exception {
 
-        String uri = "/appliance/update/{id}";
+        String uri = "/appliance/update/{id}/{type}/{model}";
         ApplianceEntity applianceEntity = new ApplianceEntity();
         applianceEntity.setModel("Indesit");
         applianceEntity.setId(1L);
         applianceEntity.setType("tv");
         String content = objectMapper.writeValueAsString(applianceEntity);
-        mockMvc.perform(put(uri, 1L).contentType(MediaType.APPLICATION_JSON).content(content))
+        mockMvc.perform(put(uri, 1L,"Indesit", "tv").contentType(MediaType.APPLICATION_JSON).content(content))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
 
