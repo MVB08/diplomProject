@@ -2,7 +2,7 @@
 ----
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 62
+Content-Length: 59
 
-{"id":1,"name":"Leha","position":null,"phoneNumber":899983333}
+{"id":1,"name":"Leha","position":"Admin","phoneNumber":777}
 ----

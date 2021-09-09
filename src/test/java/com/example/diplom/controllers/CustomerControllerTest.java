@@ -84,7 +84,7 @@ public class CustomerControllerTest {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setId(7L);
         customerEntity.setName("Leha");
-        customerEntity.setPhoneNumber(899988888766L);
+        customerEntity.setPhoneNumber("899988888766");
         String content = objectMapper.writeValueAsString(customerEntity);
         mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON).content(content))
                 .andDo(document(uri.replace("/", "\\")))
@@ -105,7 +105,7 @@ public class CustomerControllerTest {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setId(1L);
         customerEntity.setName("Leha");
-        customerEntity.setPhoneNumber(89998887766L);
+        customerEntity.setPhoneNumber("89998887766");
         String content = objectMapper.writeValueAsString(customerEntity);
         mockMvc.perform(put(uri, 1L, "Leha", 111L).contentType(MediaType.APPLICATION_JSON).content(content))
                 .andDo(document(uri.replace("/", "\\")))

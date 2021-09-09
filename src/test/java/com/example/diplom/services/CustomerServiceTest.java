@@ -61,14 +61,14 @@ public class CustomerServiceTest {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setId(1L);
         customerEntity.setName("Anna");
-        customerEntity.setPhoneNumber(89998887766L);
+        customerEntity.setPhoneNumber("89998887766");
         customerRepo.save(customerEntity);
-        assertNotNull(customerRepo.findByPhoneNumber(89998887766L));
+        assertNotNull(customerRepo.findByPhoneNumber("89998887766"));
     }
 
     @Test
     public void init() {
-        customerService.init(20L, "4", 777L);
+        customerService.init( "4", "777");
         assertNotNull(customerRepo.findById(20L));
     }
 
@@ -77,7 +77,7 @@ public class CustomerServiceTest {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setId(1L);
         customerEntity.setName("Anna");
-        customerEntity.setPhoneNumber(89998887766L);
+        customerEntity.setPhoneNumber("89998887766");
         customerRepo.save(customerEntity);
         assertNotNull(customerRepo.findById(1L));
     }
@@ -87,7 +87,7 @@ public class CustomerServiceTest {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setId(1L);
         customerEntity.setName("Anna");
-        customerEntity.setPhoneNumber(89998887766L);
+        customerEntity.setPhoneNumber("89998887766");
         customerRepo.save(customerEntity);
         assertNotNull(customerRepo.findByName("Anna"));
     }
@@ -97,7 +97,7 @@ public class CustomerServiceTest {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setId(2L);
         customerDto.setName("Ivan");
-        customerDto.setPhoneNumber(888L);
+        customerDto.setPhoneNumber("888");
         customerService.create(customerDto);
         assertNotNull(customerRepo.findById(2L));
     }
@@ -107,7 +107,7 @@ public class CustomerServiceTest {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setId(622L);
         customerEntity.setName("Leha");
-        customerEntity.setPhoneNumber(111L);
+        customerEntity.setPhoneNumber("111");
         customerRepo.save(customerEntity);
         assertNotNull(customerRepo.findById(622L));
         customerRepo.delete(customerEntity);

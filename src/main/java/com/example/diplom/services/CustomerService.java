@@ -19,32 +19,30 @@ public class CustomerService {
         return customerRepo.findAll();
     }
 
-    public List<CustomerEntity> getByPhone(Long phone) {
+    public List<CustomerEntity> getByPhone(String phone) {
         return customerRepo.findByPhoneNumber(phone);
     }
 
-    public void init(Long customerId, String customerName, Long phoneNumber) {
+    // TODO: 07.09.2021 delete method
+    public void init(String customerName, String phoneNumber) {
         CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setId(customerId);
         customerEntity.setName(customerName);
         customerEntity.setPhoneNumber(phoneNumber);
         customerRepo.save(customerEntity);
     }
 
     public Optional<CustomerEntity> findById(Long id) {
-
         return customerRepo.findById(id);
     }
 
     public List<CustomerEntity> getByName(String name) {
-
         return customerRepo.findByName(name);
     }
 
     public void create(CustomerDto customerDto) {
-        if (
-                customerRepo.findByPhoneNumber(customerDto.getPhoneNumber()).isEmpty()) {
-            init(customerDto.getId(), customerDto.getName(), customerDto.getPhoneNumber());
+        List<CustomerEntity> byPhoneNumber = customerRepo.findByPhoneNumber(customerDto.getPhoneNumber());
+        if (byPhoneNumber.isEmpty()) {
+            init(customerDto.getName(), customerDto.getPhoneNumber());
         } else {
             throw new RuntimeException("such a phoneNumber already exists ");
         }
@@ -55,9 +53,8 @@ public class CustomerService {
         customerRepo.deleteById(id);
     }
 
-    public void updateCustomer(Long customerId, String customerName, Long phoneNumber) {
-       CustomerEntity customerEntity = customerRepo.findById(customerId).orElseThrow(() -> new RuntimeException("There is no such customer"));
-        customerEntity.setId(customerId);
+    public void updateCustomer(Long customerId, String customerName, String phoneNumber) {
+        CustomerEntity customerEntity = customerRepo.findById(customerId).orElseThrow(() -> new RuntimeException("There is no such customer"));
         customerEntity.setName(customerName);
         customerEntity.setPhoneNumber(phoneNumber);
         customerRepo.save(customerEntity);

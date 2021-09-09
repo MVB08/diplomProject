@@ -21,28 +21,28 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-
-    @GetMapping("/getAll")
+    // TODO: 07.09.2021 queryparam name, phone...
+    @GetMapping("/all")
     public List<CustomerEntity> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/{id}")
     public Optional<CustomerEntity> getById(@PathVariable Long id) {
         return customerService.findById(id);
     }
 
-    @GetMapping("/getByName/{name}")
+    @GetMapping("/{name}")
     public List<CustomerEntity> getByName(@PathVariable String name) {
         return customerService.getByName(name);
     }
 
-    @GetMapping("/getByPhone/{phone}")
-    public List<CustomerEntity> getByPhone(@PathVariable Long phone) {
+    @GetMapping("/{phone}")
+    public List<CustomerEntity> getByPhone(@PathVariable String phone) {
         return customerService.getByPhone(phone);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/new")
     public String createCustomer(@RequestBody CustomerDto customerDto) {
         customerService.create(customerDto);
         return "Customer created";
@@ -55,7 +55,7 @@ public class CustomerController {
     }
 
     @PutMapping("/update/{id}/{name}/{phoneNumber}")
-    private String updateCustomer(@PathVariable Long id, @PathVariable String name, @PathVariable Long phoneNumber) {
+    private String updateCustomer(@PathVariable Long id, @PathVariable String name, @PathVariable String phoneNumber) {
         customerService.updateCustomer(id, name, phoneNumber);
         return "Customer updating";
     }

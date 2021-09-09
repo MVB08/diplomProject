@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ curl 'http://localhost:8080/appliance/update/1' -i -X PUT \
-    -H 'Content-Type: application/json'
-----

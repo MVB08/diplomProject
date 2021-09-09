@@ -1,4 +1,4 @@
 [source,options="nowrap"]
 ----
-{"id":1,"name":"Leha","position":null,"phoneNumber":899983333}
+{"id":1,"name":"Leha","position":"Admin","phoneNumber":777}
 ----

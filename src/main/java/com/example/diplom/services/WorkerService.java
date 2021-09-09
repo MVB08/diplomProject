@@ -18,7 +18,6 @@ import java.util.Optional;
 public class WorkerService {
 
     private final WorkerRepo workerRepo;
-    private final OrderRepo orderRepo;
 
     public List<WorkerEntity> getAllWorkers() {
         return workerRepo.findAll();
@@ -29,13 +28,11 @@ public class WorkerService {
         return workerRepo.findById(id);
     }
 
-    public void init(Long workerId, String workerName, String position, Long phoneNumber) {
+    public void init(String workerName, String position, Long phoneNumber) {
         WorkerEntity workerEntity = new WorkerEntity();
-        workerEntity.setId(workerId);
         workerEntity.setName(workerName);
         workerEntity.setPosition(position);
         workerEntity.setPhoneNumber(phoneNumber);
-
         workerRepo.save(workerEntity);
     }
 
@@ -44,14 +41,12 @@ public class WorkerService {
     }
 
     public List<WorkerEntity> getByPhone(Long phone) {
-
         return workerRepo.findByPhoneNumber(phone);
     }
 
     public void create(WorkerDto workerDto) {
-        if (
-               workerRepo.findByPhoneNumber(workerDto.getPhoneNumber()).isEmpty()){
-            init(workerDto.getId(), workerDto.getName(), workerDto.getPosition(), workerDto.getPhoneNumber());
+        if (workerRepo.findByPhoneNumber(workerDto.getPhoneNumber()).isEmpty()) {
+            init(workerDto.getName(), workerDto.getPosition(), workerDto.getPhoneNumber());
         } else {
             throw new RuntimeException("such a phoneNumber already exists ");
         }
@@ -63,8 +58,7 @@ public class WorkerService {
     }
 
     public void updateWorker(Long workerId, String name, String position, Long phoneNumber) {
-       WorkerEntity workerEntity = workerRepo.findById(workerId).orElseThrow(() -> new RuntimeException("There is no such worker"));
-        workerEntity.setId(workerId);
+        WorkerEntity workerEntity = workerRepo.findById(workerId).orElseThrow(() -> new RuntimeException("There is no such worker"));
         workerEntity.setName(name);
         workerEntity.setPosition(position);
         workerEntity.setPhoneNumber(phoneNumber);

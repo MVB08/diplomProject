@@ -19,17 +19,17 @@ public class OrderLineController {
 
     private final OrderLineService orderLineService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public List<OrderLine> getAllOrderLines() {
         return orderLineService.getAllOrderLines();
     }
 
-    @GetMapping("/getByLine/{numberOfLine}")
+    @GetMapping("/{numberOfLine}")
     public Optional<OrderLine> getByLine(@PathVariable Long numberOfLine) {
         return orderLineService.getById(numberOfLine);
     }
 
-    @PostMapping("/create/{orderId}/{applianceId}")
+    @PostMapping("/new/{orderId}/{applianceId}")
     public String createOrderLine(@RequestBody OrderLineDto orderLineDto, @PathVariable Long orderId, @PathVariable Long applianceId) {
         orderLineService.create(orderLineDto, orderId, applianceId);
         return "OrderLine created";
@@ -39,12 +39,6 @@ public class OrderLineController {
     public String deleteOrderLine(@PathVariable Long numberOfLine) {
         orderLineService.deleteOrderLine(numberOfLine);
         return "OrderLine deleted";
-    }
-
-    @PutMapping("/update/{orderId}/{applianceId}")
-    private String updateOrderLine(@RequestBody OrderLineDto orderLineDto, @PathVariable Long orderId, @PathVariable Long applianceId) {
-        orderLineService.updateOrderLine(orderLineDto, orderId, applianceId);
-        return "OrderLine updating";
     }
 
 }

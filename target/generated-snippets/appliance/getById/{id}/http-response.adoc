@@ -4,5 +4,5 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 38
 
-{"id":1,"type":"tv","model":"Indesit"}
+{"id":1,"type":"Indesit","model":"tv"}
 ----

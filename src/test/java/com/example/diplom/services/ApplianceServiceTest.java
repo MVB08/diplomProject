@@ -87,7 +87,7 @@ public class ApplianceServiceTest {
 
     @Test
     public void initApp() {
-       applianceService.initApp(20L, "4", "4");
+       applianceService.initApp( "4", "4");
         assertNotNull(applianceRepo.findById(20L));
 
 

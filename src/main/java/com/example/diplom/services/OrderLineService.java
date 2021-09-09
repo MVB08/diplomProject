@@ -17,17 +17,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OrderLineService {
 
-
     private final ApplianceRepo applianceRepo;
     private final OrderLineRepo orderLineRepo;
     private final OrderRepo orderRepo;
 
-    public void init(Long numberOfLine, Long orderId, Long applianceId) {
-        ApplianceEntity applianceEntity = applianceRepo.findById(applianceId).orElseThrow(() -> new RuntimeException("No such appliance"));
+    public void init(Long orderId, Long applianceId) {
         OrderLine orderLine = new OrderLine();
+        ApplianceEntity applianceEntity = applianceRepo.findById(applianceId).orElseThrow(() -> new RuntimeException("No such appliance"));
         orderLine.setApplianceEntity(applianceEntity);
-        orderLine.setNumberOfLine(numberOfLine);
-
         OrderEntity orderEntity = orderRepo.findById(orderId).orElseThrow(() -> new RuntimeException("No such order"));
         orderLine.setOrderEntity(orderEntity);
         orderLineRepo.save(orderLine);
@@ -42,26 +39,17 @@ public class OrderLineService {
     }
 
     public void create(OrderLineDto orderLineDto, Long orderId, Long applianceId) {
-        if (
-                orderLineRepo.findById(orderLineDto.getNumberOfLine()).isEmpty() &&
-                        orderRepo.findById(orderId).isPresent() &&
-                        applianceRepo.findById(applianceId).isPresent()) {
-            init(orderLineDto.getNumberOfLine(), orderId, applianceId);
+        if (orderLineRepo.findById(orderLineDto.getNumberOfLine()).isEmpty() &&
+                orderRepo.findById(orderId).isPresent() &&
+                applianceRepo.findById(applianceId).isPresent()) {
+            init(orderId, applianceId);
         } else {
             throw new RuntimeException("enter the correct values");
         }
-
-
     }
 
     public void deleteOrderLine(Long numberOfLine) {
         orderLineRepo.findById(numberOfLine).orElseThrow(() -> new RuntimeException("No such line"));
         orderLineRepo.deleteById(numberOfLine);
-    }
-
-    public void updateOrderLine(OrderLineDto orderLineDto, Long orderId, Long applianceId) {
-        orderLineRepo.findById(orderLineDto.getNumberOfLine()).orElseThrow(() -> new RuntimeException(" no such line"));
-        init(orderLineDto.getNumberOfLine(), orderId, applianceId);
-
     }
 }

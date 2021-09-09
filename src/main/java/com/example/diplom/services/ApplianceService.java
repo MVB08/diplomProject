@@ -32,17 +32,17 @@ public class ApplianceService {
         return applianceRepo.findByType(type);
     }
 
-    public void initApp(Long applianceId, String type, String model) {
+    public void initApp( String type, String model) {
 
         ApplianceEntity applianceEntity = new ApplianceEntity();
-        applianceEntity.setId(applianceId);
+
         applianceEntity.setType(type);
         applianceEntity.setModel(model);
         applianceRepo.save(applianceEntity);
     }
 
     public void create(ApplianceDto applianceDto) {
-        initApp(applianceDto.getId(), applianceDto.getType(), applianceDto.getModel());
+        initApp( applianceDto.getType(), applianceDto.getModel());
     }
 
     public void deleteAppliance(Long id) {
@@ -52,7 +52,6 @@ public class ApplianceService {
 
     public void updateAppliance(Long applianceId, String applainceType, String applianceModel) {
         ApplianceEntity applianceEntity = applianceRepo.findById(applianceId).orElseThrow(() -> new RuntimeException("There is no such appliance"));
-        applianceEntity.setId(applianceId);
         applianceEntity.setType(applainceType);
         applianceEntity.setModel(applianceModel);
         applianceRepo.save(applianceEntity);

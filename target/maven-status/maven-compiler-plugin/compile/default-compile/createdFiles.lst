@@ -1,5 +1,6 @@
 com\example\diplom\services\OrderLineService.class
 com\example\diplom\controllers\CustomerController.class
+com\example\diplom\config\Config.class
 com\example\diplom\controllers\WorkerController.class
 com\example\diplom\controllers\OrderController.class
 com\example\diplom\services\WorkerService.class

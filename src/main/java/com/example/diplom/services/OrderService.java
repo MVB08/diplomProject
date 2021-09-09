@@ -29,10 +29,8 @@ public class OrderService {
     }
 
 
-    public void init(Long orderId, Long customerId, Long workerId) {
+    public void init(Long customerId, Long workerId) {
         OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setOrderId(orderId);
-
         CustomerEntity customerEntity = customerRepo.findById(customerId).orElseThrow(() -> new RuntimeException("no such customer"));
         orderEntity.setCustomerEntity(customerEntity);
         WorkerEntity workerEntity = workerRepo.findById(workerId).orElseThrow(() -> new RuntimeException("no such worker"));
@@ -40,26 +38,18 @@ public class OrderService {
         orderRepo.save(orderEntity);
     }
 
-    public void create(OrderDto orderDto, Long customerId, Long workerId) {
-        if (
-                orderRepo.findById(orderDto.getOrderId()).isEmpty() &&
-                        customerRepo.findById(customerId).isPresent() &&
-                        workerRepo.findById(workerId).isPresent()) {
-            init(orderDto.getOrderId(), customerId, workerId);
+    public void create( Long customerId, Long workerId) {
+        if (customerRepo.findById(customerId).isPresent() &&
+                workerRepo.findById(workerId).isPresent()) {
+            init(customerId, workerId);
         } else {
             throw new RuntimeException("enter the correct values");
         }
     }
-
 
     public void deleteOrder(Long id) {
         orderRepo.findById(id).orElseThrow(() -> new RuntimeException("no such order"));
         orderRepo.deleteById(id);
     }
 
-    public void updateOrder(OrderDto orderDto, Long customerId, Long workerId) {
-        orderRepo.findById(orderDto.getOrderId()).orElseThrow(() -> new RuntimeException(" no such order"));
-        init(orderDto.getOrderId(), customerId, workerId);
-
-    }
 }

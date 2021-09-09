@@ -22,27 +22,27 @@ public class WorkerController {
     private final WorkerService workerService;
 
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public List<WorkerEntity> getAllWorkers() {
         return workerService.getAllWorkers();
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/{id}")
     public Optional<WorkerEntity> getById(@PathVariable Long id) {
         return workerService.getById(id);
     }
 
-    @GetMapping("/getByName/{name}")
+    @GetMapping("/{name}")
     public List<WorkerEntity> getByName(@PathVariable String name) {
         return workerService.getByName(name);
     }
 
-    @GetMapping("/getByPhone/{phone}")
+    @GetMapping("/{phone}")
     public List<WorkerEntity> getByPhone(@PathVariable Long phone) {
         return workerService.getByPhone(phone);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/new")
     public String createWorker(@RequestBody WorkerDto workerDto) {
         workerService.create(workerDto);
         return "Worker created";

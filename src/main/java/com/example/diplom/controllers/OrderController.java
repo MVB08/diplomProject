@@ -20,19 +20,19 @@ public class OrderController {
     private final OrderService orderService;
 
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public List<OrderEntity> getAllOrders() {
         return orderService.getAllOrders();
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/{id}")
     public Optional<OrderEntity> getById(@PathVariable Long id) {
         return orderService.getById(id);
     }
 
-    @PostMapping("/create/{customerId}/{workerId}")
-    public String createOrder( @RequestBody OrderDto orderDto, @PathVariable Long customerId, @PathVariable Long workerId) {
-       orderService.create(orderDto, customerId, workerId);
+    @PostMapping("/new/{customerId}/{workerId}")
+    public String createOrder(@PathVariable Long customerId, @PathVariable Long workerId) {
+       orderService.create( customerId, workerId);
         return "Order created";
     }
 
@@ -41,11 +41,4 @@ public class OrderController {
         orderService.deleteOrder(id);
         return "Order deleted";
     }
-
-    @PutMapping("/update/{customerId}/{workerId}")
-    private String updateOrder(@RequestBody OrderDto orderDto, @PathVariable Long customerId, @PathVariable Long workerId) {
-        orderService.updateOrder(orderDto, customerId, workerId);
-        return "Order updating";
-    }
-
 }

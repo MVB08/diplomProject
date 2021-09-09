@@ -18,27 +18,27 @@ public class AppliancesController {
     private final ApplianceService applianceService;
 
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public List<ApplianceEntity> getAllAppliance() {
         return applianceService.getAllAppliance();
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/{id}")
     public Optional<ApplianceEntity> getById(@PathVariable Long id) {
         return applianceService.findById(id);
     }
 
-    @GetMapping("/getByModel/{model}")
+    @GetMapping("/{model}")
     public List<ApplianceEntity> getByModel(@PathVariable String model) {
         return applianceService.getByModel(model);
     }
 
-    @GetMapping("/getByType/{type}")
+    @GetMapping("/{type}")
     public List<ApplianceEntity> getByType(@PathVariable String type) {
         return applianceService.getByType(type);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/new")
     public String createAppliance(@RequestBody ApplianceDto applianceDto) {
         applianceService.create(applianceDto);
         return "Appliance created";
