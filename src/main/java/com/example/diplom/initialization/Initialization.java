@@ -37,9 +37,9 @@ public class Initialization {
         applianceService.initApp( "iron", "Karcher");
         applianceService.initApp( "iron", "Polaris");
 
-        workerService.init( "Daniil", "Seller", 89037727272L);
-        workerService.init( "Anna", "Seller", 89042662626L);
-        workerService.init( "Valentin", "Seller", 89053211212L);
+        workerService.init( "Daniil", "Seller", "89037727272");
+        workerService.init( "Anna", "Seller", "89042662626");
+        workerService.init( "Valentin", "Seller", "89053211212");
 
         customerService.init("Pavel", "89112343434");
         customerService.init("Goga", "89213010101");

@@ -48,7 +48,7 @@ public class CustomerControllerTest {
 
     @Test
     public void getAllCustomers() throws Exception {
-        String uri = "/customer/getAll";
+        String uri = "/customer/all";
         mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
@@ -56,33 +56,25 @@ public class CustomerControllerTest {
 
     @Test
     public void getById() throws Exception {
-        String uri = "/customer/getById/{id}";
+        String uri = "/customer/{id}";
         mockMvc.perform(get(uri, 1L).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void getByName() throws Exception {
-        String uri = "/customer/getByName/{name}";
-        mockMvc.perform(get(uri, "Pavel").contentType(MediaType.APPLICATION_JSON))
-                .andDo(document(uri.replace("/", "\\")))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void getByPhone() throws Exception {
-        String uri = "/customer/getByPhone/{phone}";
-        mockMvc.perform(get(uri, 89112343434L).contentType(MediaType.APPLICATION_JSON))
+    public void getByParam() throws Exception {
+        String uri = "/customer/query";
+        mockMvc.perform(get(uri).param("name", "Pavel")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void createCustomer() throws Exception {
-        String uri = "/customer/create";
+        String uri = "/customer/new";
         CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setId(7L);
         customerEntity.setName("Leha");
         customerEntity.setPhoneNumber("899988888766");
         String content = objectMapper.writeValueAsString(customerEntity);
@@ -92,18 +84,9 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void deleteCustomer() throws Exception {
-        String uri = "/customer/delete/{id}";
-        mockMvc.perform(delete(uri, 3L).contentType(MediaType.APPLICATION_JSON))
-                .andDo(document(uri.replace("/", "\\")))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     public void updateCustomer() throws Exception {
         String uri = "/customer/update/{id}/{name}/{phoneNumber}";
         CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setId(1L);
         customerEntity.setName("Leha");
         customerEntity.setPhoneNumber("89998887766");
         String content = objectMapper.writeValueAsString(customerEntity);
@@ -113,4 +96,4 @@ public class CustomerControllerTest {
 
     }
 
-    }
+}

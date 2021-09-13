@@ -21,7 +21,6 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    // TODO: 07.09.2021 queryparam name, phone...
     @GetMapping("/all")
     public List<CustomerEntity> getAllCustomers() {
         return customerService.getAllCustomers();
@@ -32,26 +31,17 @@ public class CustomerController {
         return customerService.findById(id);
     }
 
-    @GetMapping("/{name}")
-    public List<CustomerEntity> getByName(@PathVariable String name) {
-        return customerService.getByName(name);
-    }
+    @GetMapping("/query")
+    public List<CustomerEntity> getByParam(@RequestParam(value = "name", required = false) String name,
+                                          @RequestParam(value = "phone", required = false) String phone) {
 
-    @GetMapping("/{phone}")
-    public List<CustomerEntity> getByPhone(@PathVariable String phone) {
-        return customerService.getByPhone(phone);
+        return customerService.getByQuery(name, phone);
     }
 
     @PostMapping("/new")
     public String createCustomer(@RequestBody CustomerDto customerDto) {
         customerService.create(customerDto);
         return "Customer created";
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String deleteCustomer(@PathVariable Long id) {
-        customerService.deleteCustomer(id);
-        return "Customer deleted";
     }
 
     @PutMapping("/update/{id}/{name}/{phoneNumber}")

@@ -27,20 +27,18 @@ public class WorkerController {
         return workerService.getAllWorkers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Optional<WorkerEntity> getById(@PathVariable Long id) {
         return workerService.getById(id);
     }
 
-    @GetMapping("/{name}")
-    public List<WorkerEntity> getByName(@PathVariable String name) {
-        return workerService.getByName(name);
+    @GetMapping("/query")
+    public List<WorkerEntity> getByParam(@RequestParam(value = "name", required = false) String name,
+                                        @RequestParam(value = "phone", required = false) String phone) {
+
+        return workerService.getByQuery(name, phone);
     }
 
-    @GetMapping("/{phone}")
-    public List<WorkerEntity> getByPhone(@PathVariable Long phone) {
-        return workerService.getByPhone(phone);
-    }
 
     @PostMapping("/new")
     public String createWorker(@RequestBody WorkerDto workerDto) {
@@ -55,7 +53,7 @@ public class WorkerController {
     }
 
     @PutMapping("/update/{id}/{name}/{position}/{phoneNumber}")
-    private String updateWorker(@PathVariable Long id, @PathVariable String name, @PathVariable String position, @PathVariable Long phoneNumber) {
+    private String updateWorker(@PathVariable Long id, @PathVariable String name, @PathVariable String position, @PathVariable String phoneNumber) {
         workerService.updateWorker(id, name, position, phoneNumber);
         return "Worker updating";
     }

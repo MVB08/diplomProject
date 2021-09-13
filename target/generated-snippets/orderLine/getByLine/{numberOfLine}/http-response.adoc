@@ -1,8 +1,0 @@
-[source,http,options="nowrap"]
-----
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 100
-
-{"numberOfLine":1,"applianceEntity":{"id":1,"type":"tv","model":"Bosh"},"orderEntity":{"orderId":1}}
-----

@@ -3,10 +3,12 @@ package com.example.diplom.controllers;
 import com.example.diplom.dto.ApplianceDto;
 import com.example.diplom.entities.ApplianceEntity;
 
+import com.example.diplom.repositories.ApplianceRepo;
 import com.example.diplom.services.ApplianceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,17 +27,15 @@ public class AppliancesController {
 
     @GetMapping("/{id}")
     public Optional<ApplianceEntity> getById(@PathVariable Long id) {
+
         return applianceService.findById(id);
     }
 
-    @GetMapping("/{model}")
-    public List<ApplianceEntity> getByModel(@PathVariable String model) {
-        return applianceService.getByModel(model);
-    }
+    @GetMapping("/query")
+    public List<ApplianceEntity> getByParam(@RequestParam(value = "model", required = false) String model,
+                                            @RequestParam(value = "type", required = false) String type) {
 
-    @GetMapping("/{type}")
-    public List<ApplianceEntity> getByType(@PathVariable String type) {
-        return applianceService.getByType(type);
+        return applianceService.getByQuery(model, type);
     }
 
     @PostMapping("/new")

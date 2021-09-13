@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ http GET 'http://localhost:8080/order/getById/1' \
-    'Content-Type:application/json'
-----

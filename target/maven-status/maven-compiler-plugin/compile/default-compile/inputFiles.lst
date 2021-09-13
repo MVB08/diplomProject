@@ -4,12 +4,14 @@ C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\entities\A
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\services\OrderService.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\initialization\Initialization.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\services\OrderLineService.java
+C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\config\MySpringMvcDispatcherSerlvetIntitializer.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\DiplomApplication.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\entities\OrderEntity.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\services\ApplianceService.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\entities\WorkerEntity.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\repositories\ApplianceRepo.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\controllers\WorkerController.java
+C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\controllers\FrontEndController.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\dto\OrderLineDto.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\repositories\CustomerRepo.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\controllers\AppliancesController.java
@@ -26,3 +28,4 @@ C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\repositori
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\controllers\OrderController.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\config\Config.java
 C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\services\CustomerService.java
+C:\Users\User\IdeaProjectsNew\diplom\src\main\java\com\example\diplom\config\SpringConfig.java

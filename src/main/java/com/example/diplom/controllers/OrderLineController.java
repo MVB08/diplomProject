@@ -29,9 +29,10 @@ public class OrderLineController {
         return orderLineService.getById(numberOfLine);
     }
 
-    @PostMapping("/new/{orderId}/{applianceId}")
-    public String createOrderLine(@RequestBody OrderLineDto orderLineDto, @PathVariable Long orderId, @PathVariable Long applianceId) {
-        orderLineService.create(orderLineDto, orderId, applianceId);
+    @PostMapping("/new/query")
+    public String createOrderLine(@RequestParam(value = "orderId", required = false) Long orderId,
+                                  @RequestParam(value = "applianceId", required = false) Long applianceId) {
+        orderLineService.create(orderId, applianceId);
         return "OrderLine created";
     }
 

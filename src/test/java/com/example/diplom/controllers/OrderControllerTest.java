@@ -2,6 +2,7 @@ package com.example.diplom.controllers;
 
 import com.example.diplom.entities.CustomerEntity;
 import com.example.diplom.entities.OrderEntity;
+import com.example.diplom.services.OrderLineService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,6 +35,8 @@ public class OrderControllerTest {
     ObjectMapper objectMapper;
     @Autowired
     WebApplicationContext webApplicationContext;
+    @Autowired
+    OrderLineService orderLineService;
 
     @Rule
     public JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
@@ -49,7 +52,7 @@ public class OrderControllerTest {
 
     @Test
     public void getAllOrders() throws Exception {
-        String uri = "/order/getAll";
+        String uri = "/order/all";
         mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
@@ -57,7 +60,7 @@ public class OrderControllerTest {
 
     @Test
     public void getById() throws Exception {
-        String uri = "/order/getById/{id}";
+        String uri = "/order/{id}";
         mockMvc.perform(get(uri, 1L).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
@@ -65,7 +68,7 @@ public class OrderControllerTest {
 
     @Test
     public void createOrder() throws Exception {
-        String uri = "/order/create/{customerId}/{workerId}";
+        String uri = "/order/new/{customerId}/{workerId}";
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setOrderId(5L);
         String content = objectMapper.writeValueAsString(orderEntity);
@@ -75,23 +78,14 @@ public class OrderControllerTest {
 
     }
 
-//    @Test
-//    public void deleteOrder() throws Exception {
-//        String uri = "/order/delete/{id}";
-//        mockMvc.perform(delete(uri, 1L).contentType(MediaType.APPLICATION_JSON))
-//                .andDo(document(uri.replace("/", "\\")))
-//                .andExpect(status().isOk());
-//    }
-
     @Test
-    public void updateCustomer() throws Exception {
-        String uri = "/order/update/{customerId}/{workerId}";
-        OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setOrderId(1L);
-        String content = objectMapper.writeValueAsString(orderEntity);
-        mockMvc.perform(put(uri, 2L, 2L).contentType(MediaType.APPLICATION_JSON).content(content))
+    public void deleteOrder() throws Exception {
+        orderLineService.deleteOrderLine(1L);
+        orderLineService.deleteOrderLine(2L);
+        String uri = "/order/delete/{id}";
+        mockMvc.perform(delete(uri, 1L).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
-
     }
+
 }

@@ -4,9 +4,11 @@ package com.example.diplom.services;
 import com.example.diplom.dto.ApplianceDto;
 import com.example.diplom.entities.ApplianceEntity;
 import com.example.diplom.repositories.ApplianceRepo;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +29,15 @@ public class ApplianceService {
     public List<ApplianceEntity> getByModel(String model) {
         return applianceRepo.findByModel(model);
     }
-
+public List<ApplianceEntity> getByQuery(String model, String type){
+    if (model!=null) {
+        return getByModel(model);
+    } else if (type!=null) {
+        return getByType(type);
+    } else {
+        return new ArrayList<>();
+    }
+}
     public List<ApplianceEntity> getByType(String type) {
         return applianceRepo.findByType(type);
     }

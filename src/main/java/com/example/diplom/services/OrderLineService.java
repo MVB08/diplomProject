@@ -38,9 +38,8 @@ public class OrderLineService {
         return orderLineRepo.findById(numberOfLine);
     }
 
-    public void create(OrderLineDto orderLineDto, Long orderId, Long applianceId) {
-        if (orderLineRepo.findById(orderLineDto.getNumberOfLine()).isEmpty() &&
-                orderRepo.findById(orderId).isPresent() &&
+    public void create(Long orderId, Long applianceId) {
+        if (orderRepo.findById(orderId).isPresent() &&
                 applianceRepo.findById(applianceId).isPresent()) {
             init(orderId, applianceId);
         } else {

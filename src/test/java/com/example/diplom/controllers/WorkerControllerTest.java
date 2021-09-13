@@ -48,43 +48,27 @@ public class WorkerControllerTest {
 
     @Test
     public void getAllWorkers() throws Exception {
-        String uri = "/worker/getAll";
+        String uri = "/worker/all";
         mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void getById() throws Exception {
-        String uri = "/worker/getById/{id}";
-        mockMvc.perform(get(uri, 1L).contentType(MediaType.APPLICATION_JSON))
-                .andDo(document(uri.replace("/", "\\")))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void getByName() throws Exception {
-        String uri = "/worker/getByName/{name}";
-        mockMvc.perform(get(uri, "Anna").contentType(MediaType.APPLICATION_JSON))
-                .andDo(document(uri.replace("/", "\\")))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void getByPhone() throws Exception {
-        String uri = "/worker/getByPhone/{phone}";
-        mockMvc.perform(get(uri, 89037727272L).contentType(MediaType.APPLICATION_JSON))
+    public void getByParam() throws Exception {
+        String uri = "/worker/query";
+        mockMvc.perform(get(uri).param("name", "Anna")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void createWorker() throws Exception {
-        String uri = "/worker/create";
+        String uri = "/worker/new";
         WorkerEntity workerEntity = new WorkerEntity();
-        workerEntity.setId(4L);
         workerEntity.setName("Leha");
-        workerEntity.setPhoneNumber(8988888766L);
+        workerEntity.setPhoneNumber("8988888766");
         workerEntity.setPosition("Seller");
         String content = objectMapper.writeValueAsString(workerEntity);
         mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON).content(content))
@@ -104,10 +88,9 @@ public class WorkerControllerTest {
     public void updateWorker() throws Exception {
         String uri = "/worker/update/{id}/{name}/{position}/{phoneNumber}";
         WorkerEntity workerEntity = new WorkerEntity();
-        workerEntity.setId(1L);
         workerEntity.setName("Leha");
         workerEntity.setPosition("Admin");
-        workerEntity.setPhoneNumber(777L);
+        workerEntity.setPhoneNumber("777");
         String content = objectMapper.writeValueAsString(workerEntity);
         mockMvc.perform(put(uri, 1L, "Leha", "Admin", 777L).contentType(MediaType.APPLICATION_JSON).content(content))
                 .andDo(document(uri.replace("/", "\\")))

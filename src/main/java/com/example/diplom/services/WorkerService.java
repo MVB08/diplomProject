@@ -1,15 +1,13 @@
 package com.example.diplom.services;
 
 import com.example.diplom.dto.WorkerDto;
-import com.example.diplom.entities.ApplianceEntity;
-import com.example.diplom.entities.OrderEntity;
+import com.example.diplom.entities.CustomerEntity;
 import com.example.diplom.entities.WorkerEntity;
-import com.example.diplom.repositories.OrderRepo;
 import com.example.diplom.repositories.WorkerRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +26,7 @@ public class WorkerService {
         return workerRepo.findById(id);
     }
 
-    public void init(String workerName, String position, Long phoneNumber) {
+    public void init(String workerName, String position, String phoneNumber) {
         WorkerEntity workerEntity = new WorkerEntity();
         workerEntity.setName(workerName);
         workerEntity.setPosition(position);
@@ -37,10 +35,10 @@ public class WorkerService {
     }
 
     public List<WorkerEntity> getByName(String name) {
-        return workerRepo.findByName(name);
+        return  workerRepo.findByName(name);
     }
 
-    public List<WorkerEntity> getByPhone(Long phone) {
+    public List<WorkerEntity> getByPhone(String phone) {
         return workerRepo.findByPhoneNumber(phone);
     }
 
@@ -57,11 +55,21 @@ public class WorkerService {
         workerRepo.deleteById(id);
     }
 
-    public void updateWorker(Long workerId, String name, String position, Long phoneNumber) {
+    public void updateWorker(Long workerId, String name, String position, String phoneNumber) {
         WorkerEntity workerEntity = workerRepo.findById(workerId).orElseThrow(() -> new RuntimeException("There is no such worker"));
         workerEntity.setName(name);
         workerEntity.setPosition(position);
         workerEntity.setPhoneNumber(phoneNumber);
         workerRepo.save(workerEntity);
+    }
+
+    public List<WorkerEntity> getByQuery(String name, String phone) {
+        if (name!=null) {
+            return getByName(name);
+        } else if (phone!=null) {
+            return getByPhone(phone);
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

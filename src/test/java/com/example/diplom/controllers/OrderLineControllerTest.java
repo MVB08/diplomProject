@@ -1,5 +1,6 @@
 package com.example.diplom.controllers;
 
+import com.example.diplom.entities.CustomerEntity;
 import com.example.diplom.entities.OrderEntity;
 import com.example.diplom.entities.OrderLine;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,7 +49,7 @@ public class OrderLineControllerTest {
 
     @Test
     public void getAllOrderLines() throws Exception {
-        String uri = "/orderLine/getAll";
+        String uri = "/orderLine/all";
         mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
@@ -56,7 +57,7 @@ public class OrderLineControllerTest {
 
     @Test
     public void getByLine() throws Exception {
-        String uri = "/orderLine/getByLine/{numberOfLine}";
+        String uri = "/orderLine/{numberOfLine}";
         mockMvc.perform(get(uri, 1L).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
@@ -64,31 +65,19 @@ public class OrderLineControllerTest {
 
     @Test
     public void createOrderLine() throws Exception {
-        String uri = "/orderLine/create/{orderId}/{applianceId}";
-        OrderLine orderLine = new OrderLine();
-        orderLine.setNumberOfLine(10L);
-        String content = objectMapper.writeValueAsString(orderLine);
-        mockMvc.perform(post(uri, 1L, 8L).contentType(MediaType.APPLICATION_JSON).content(content))
+        String uri = "/orderLine/new/query";
+        mockMvc.perform(post(uri).param("orderId", "2")
+                        .param("applianceId", "9").contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void deleteOrderLine() throws Exception{
+    public void deleteOrderLine() throws Exception {
         String uri = "/orderLine/delete/{numberOfLine}";
         mockMvc.perform(delete(uri, 3L).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void updateOrderLine() throws Exception {
-        String uri = "/orderLine/update/{orderId}/{applianceId}";
-        OrderLine orderLine = new OrderLine();
-        orderLine.setNumberOfLine(1L);
-        String content = objectMapper.writeValueAsString(orderLine);
-        mockMvc.perform(put(uri, 3L, 8L).contentType(MediaType.APPLICATION_JSON).content(content))
-                .andDo(document(uri.replace("/", "\\")))
-                .andExpect(status().isOk());
-    }
 }

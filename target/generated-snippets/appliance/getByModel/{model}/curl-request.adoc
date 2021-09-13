@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ curl 'http://localhost:8080/appliance/getByModel/Bosh' -i -X GET \
-    -H 'Content-Type: application/json'
-----

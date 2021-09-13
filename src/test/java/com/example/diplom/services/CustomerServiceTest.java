@@ -20,6 +20,8 @@ import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 
@@ -53,13 +55,16 @@ public class CustomerServiceTest {
 
     @Test
     public void getAllCustomers() {
+        CustomerEntity customerEntity = new CustomerEntity();
+        customerEntity.setName("Luda");
+        customerEntity.setPhoneNumber("89998887788");
+        customerRepo.save(customerEntity);
         assertNotNull(customerRepo.findAll());
     }
 
     @Test
     public void getByPhone() {
         CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setId(1L);
         customerEntity.setName("Anna");
         customerEntity.setPhoneNumber("89998887766");
         customerRepo.save(customerEntity);
@@ -75,9 +80,8 @@ public class CustomerServiceTest {
     @Test
     public void findById() {
         CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setId(1L);
-        customerEntity.setName("Anna");
-        customerEntity.setPhoneNumber("89998887766");
+        customerEntity.setName("Uliana");
+        customerEntity.setPhoneNumber("89998887755");
         customerRepo.save(customerEntity);
         assertNotNull(customerRepo.findById(1L));
     }
@@ -85,9 +89,8 @@ public class CustomerServiceTest {
     @Test
     public void getByName() {
         CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setId(1L);
         customerEntity.setName("Anna");
-        customerEntity.setPhoneNumber("89998887766");
+        customerEntity.setPhoneNumber("89998887733");
         customerRepo.save(customerEntity);
         assertNotNull(customerRepo.findByName("Anna"));
     }
@@ -95,39 +98,17 @@ public class CustomerServiceTest {
     @Test
     public void create() {
         CustomerDto customerDto = new CustomerDto();
-        customerDto.setId(2L);
         customerDto.setName("Ivan");
         customerDto.setPhoneNumber("888");
         customerService.create(customerDto);
-        assertNotNull(customerRepo.findById(2L));
-    }
-
-    @Test
-    public void deleteCustomer() {
-        CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setId(622L);
-        customerEntity.setName("Leha");
-        customerEntity.setPhoneNumber("111");
-        customerRepo.save(customerEntity);
-        assertNotNull(customerRepo.findById(622L));
-        customerRepo.delete(customerEntity);
-        assertTrue(customerRepo.findById(622L).isEmpty());
+        assertNotNull(customerRepo.findById(1L));
     }
 
     @Test
     public void updateCustomer() {
-//        CustomerEntity customerEntity = new CustomerEntity();
-//        customerEntity.setId(5L);
-//        customerEntity.setName("Geka");
-//        customerEntity.setPhoneNumber(111L);
-//        customerRepo.save(customerEntity);
-////        assertNotNull(customerRepo.findByPhoneNumber(111L));
-//        CustomerDto customerDto = new CustomerDto();
-//        customerDto.setId(5L);
-//        customerDto.setName("Evgeniy");
-//        customerDto.setPhoneNumber(112L);
-//        customerService.updateCustomer(5L,customerDto );
-//        assertTrue(customerRepo.findById(5L).isPresent());
-//        assertNotNull(customerRepo.findByName("Evgeniy"));
+        assertTrue(customerRepo.findById(1L).isPresent());
+        customerService.updateCustomer(1L,"Ilia", "999" );
+        assertTrue(customerRepo.findById(1L).isPresent());
+        assertNotNull(customerRepo.findByName("Ilia"));
     }
 }

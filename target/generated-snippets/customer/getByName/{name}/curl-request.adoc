@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ curl 'http://localhost:8080/customer/getByName/Pavel' -i -X GET \
-    -H 'Content-Type: application/json'
-----

@@ -1,4 +1,0 @@
-[source,options="nowrap"]
-----
-[{"id":1,"phoneNumber":89112343434,"name":"Pavel"},{"id":2,"phoneNumber":89213010101,"name":"Goga"},{"id":4,"phoneNumber":89215550404,"name":"Inna"}]
-----

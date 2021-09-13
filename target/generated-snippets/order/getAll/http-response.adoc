@@ -1,8 +1,0 @@
-[source,http,options="nowrap"]
-----
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 57
-
-[{"orderId":1},{"orderId":2},{"orderId":3},{"orderId":4}]
-----

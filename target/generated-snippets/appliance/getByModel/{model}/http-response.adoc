@@ -1,8 +1,0 @@
-[source,http,options="nowrap"]
-----
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 153
-
-[{"id":3,"type":"fridge","model":"Bosh"},{"id":6,"type":"tv","model":"Bosh"},{"id":9,"type":"teapot","model":"Bosh"},{"id":1,"type":"tv","model":"Bosh"}]
-----

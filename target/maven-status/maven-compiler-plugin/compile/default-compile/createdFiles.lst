@@ -9,6 +9,7 @@ com\example\diplom\entities\WorkerEntity.class
 com\example\diplom\repositories\CustomerRepo.class
 com\example\diplom\entities\OrderLine.class
 com\example\diplom\initialization\Initialization.class
+com\example\diplom\controllers\FrontEndController.class
 com\example\diplom\dto\CustomerDto.class
 com\example\diplom\repositories\WorkerRepo.class
 com\example\diplom\dto\ApplianceDto.class

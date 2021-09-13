@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ http POST 'http://localhost:8080/orderLine/create/1/8' \
-    'Content-Type:application/json'
-----

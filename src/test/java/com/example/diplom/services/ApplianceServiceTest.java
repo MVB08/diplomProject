@@ -19,6 +19,8 @@ import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 
@@ -50,13 +52,16 @@ public class ApplianceServiceTest {
 
     @Test
     public void getAllAppliance() {
+        ApplianceEntity applianceEntity = new ApplianceEntity();
+        applianceEntity.setType("2");
+        applianceEntity.setModel("2");
+        applianceRepo.save(applianceEntity);
         assertNotNull(applianceRepo.findAll());
     }
 
     @Test
-    public void findById() throws Exception {
+    public void findById()  {
         ApplianceEntity applianceEntity = new ApplianceEntity();
-        applianceEntity.setId(1L);
         applianceEntity.setType("1");
         applianceEntity.setModel("1");
         applianceRepo.save(applianceEntity);
@@ -66,29 +71,27 @@ public class ApplianceServiceTest {
     @Test
     public void getByModel() {
         ApplianceEntity applianceEntity = new ApplianceEntity();
-        applianceEntity.setId(2L);
-        applianceEntity.setType("2");
-        applianceEntity.setModel("2");
+        applianceEntity.setType("3");
+        applianceEntity.setModel("3");
         applianceRepo.save(applianceEntity);
-        assertNotNull(applianceRepo.findByModel("2"));
+        assertNotNull(applianceRepo.findByModel("3"));
 
     }
 
     @Test
     public void getByType() {
         ApplianceEntity applianceEntity = new ApplianceEntity();
-        applianceEntity.setId(3L);
-        applianceEntity.setType("3");
-        applianceEntity.setModel("3");
+        applianceEntity.setType("4");
+        applianceEntity.setModel("4");
         applianceRepo.save(applianceEntity);
-        assertNotNull(applianceRepo.findByType("3"));
+        assertNotNull(applianceRepo.findByType("4"));
         assertTrue(applianceRepo.findById(3L).isPresent());
     }
 
     @Test
     public void initApp() {
-       applianceService.initApp( "4", "4");
-        assertNotNull(applianceRepo.findById(20L));
+       applianceService.initApp( "5", "5");
+        assertNotNull(applianceRepo.findByType("5"));
 
 
 
@@ -97,43 +100,27 @@ public class ApplianceServiceTest {
     @Test
     public void create() {
         ApplianceDto applianceDto = new ApplianceDto();
-        applianceDto.setModel("5");
-        applianceDto.setType("5");
-        applianceDto.setId(50L);
+        applianceDto.setModel("6");
+        applianceDto.setType("6");
         applianceService.create(applianceDto);
-        assertNotNull(applianceRepo.findById(50L));
+        assertNotNull(applianceRepo.findByType("6"));
 
     }
 
     @Test
     public void deleteAppliance() {
-        ApplianceEntity applianceEntity = new ApplianceEntity();
-        applianceEntity.setId(6L);
-        applianceEntity.setType("6");
-        applianceEntity.setModel("6");
-        applianceRepo.save(applianceEntity);
-        assertNotNull(applianceRepo.findByType("6"));
-        assertTrue(applianceRepo.findById(6L).isPresent());
-        applianceRepo.deleteById(6L);
-        assertTrue(applianceRepo.findById(6L).isEmpty());
+        assertTrue(applianceRepo.findById(12L).isPresent());
+        applianceRepo.deleteById(12L);
+        assertTrue(applianceRepo.findById(12L).isEmpty());
     }
 
     @Test
     public void updateAppliance() {
-//        ApplianceEntity applianceEntity = new ApplianceEntity();
-//        applianceEntity.setId(6L);
-//        applianceEntity.setType("6");
-//        applianceEntity.setModel("6");
-//        applianceRepo.save(applianceEntity);
-//        assertNotNull(applianceRepo.findByModel("6"));
-//        assertTrue(applianceRepo.findById(6L).isPresent());
-//        ApplianceDto applianceDto = new ApplianceDto();
-//        applianceDto.setId(6L);
-//        applianceDto.setModel("777");
-//        applianceDto.setType("6");
-//        applianceService.updateAppliance(6L,applianceDto );
-//        assertTrue(applianceRepo.findById(6L).isPresent());
-//        assertNotNull(applianceRepo.findByModel("777"));
+        assertTrue(applianceRepo.findById(6L).isPresent());
+        applianceService.updateAppliance(6L,"777", "888" );
+        assertTrue(applianceRepo.findById(6L).isPresent());
+        assertNotNull(applianceRepo.findByModel("888"));
+        assertNotNull(applianceRepo.findByType("777"));
 
     }
 }

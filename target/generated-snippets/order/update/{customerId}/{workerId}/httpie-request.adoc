@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ http PUT 'http://localhost:8080/order/update/2/2' \
-    'Content-Type:application/json'
-----

@@ -8,5 +8,5 @@ public class WorkerDto {
     Long id;
     String name;
     String position;
-    Long phoneNumber;
+    String phoneNumber;
 }

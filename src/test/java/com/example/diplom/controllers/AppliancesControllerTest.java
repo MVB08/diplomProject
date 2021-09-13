@@ -49,7 +49,7 @@ public class AppliancesControllerTest {
     @Test
     public void getAllAppliance() throws Exception {
 
-        String uri = "/appliance/getAll";
+        String uri = "/appliance/all";
         mockMvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
@@ -58,24 +58,17 @@ public class AppliancesControllerTest {
 
     @Test
     public void getById() throws Exception {
-        String uri = "/appliance/getById/{id}";
+        String uri = "/appliance/{id}";
         mockMvc.perform(get(uri, 1L).contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void getByModel() throws Exception {
-        String uri = "/appliance/getByModel/{model}";
-        mockMvc.perform(get(uri, "Bosh").contentType(MediaType.APPLICATION_JSON))
-                .andDo(document(uri.replace("/", "\\")))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void getByType() throws Exception {
-        String uri = "/appliance/getByType/{type}";
-        mockMvc.perform(get(uri, "tv").contentType(MediaType.APPLICATION_JSON))
+    public void getByParam() throws Exception {
+        String uri = "/appliance/query";
+        mockMvc.perform(get(uri).param("model", "LG")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
     }
@@ -83,10 +76,9 @@ public class AppliancesControllerTest {
     @Test
     public void createAppliance() throws Exception {
 
-        String uri = "/appliance/create";
+        String uri = "/appliance/new";
         ApplianceEntity applianceEntity = new ApplianceEntity();
         applianceEntity.setModel("Bosh");
-        applianceEntity.setId(1L);
         applianceEntity.setType("tv");
         String content = objectMapper.writeValueAsString(applianceEntity);
         mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON).content(content))
@@ -111,10 +103,9 @@ public class AppliancesControllerTest {
         String uri = "/appliance/update/{id}/{type}/{model}";
         ApplianceEntity applianceEntity = new ApplianceEntity();
         applianceEntity.setModel("Indesit");
-        applianceEntity.setId(1L);
         applianceEntity.setType("tv");
         String content = objectMapper.writeValueAsString(applianceEntity);
-        mockMvc.perform(put(uri, 1L,"Indesit", "tv").contentType(MediaType.APPLICATION_JSON).content(content))
+        mockMvc.perform(put(uri, 1L, "Indesit", "tv").contentType(MediaType.APPLICATION_JSON).content(content))
                 .andDo(document(uri.replace("/", "\\")))
                 .andExpect(status().isOk());
 

@@ -21,7 +21,7 @@ public class WorkerEntity {
     Long id;
     String name;
     String position;
-    Long phoneNumber;
+    String phoneNumber;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)

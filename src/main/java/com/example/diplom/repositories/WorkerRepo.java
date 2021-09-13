@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface WorkerRepo extends JpaRepository<WorkerEntity,Long> {
     List<WorkerEntity> findByName(String name);
-    List<WorkerEntity> findByPhoneNumber(Long phone);
+    List<WorkerEntity> findByPhoneNumber(String phone);
 
 }

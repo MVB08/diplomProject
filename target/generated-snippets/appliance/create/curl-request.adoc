@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ curl 'http://localhost:8080/appliance/create' -i -X POST \
-    -H 'Content-Type: application/json'
-----

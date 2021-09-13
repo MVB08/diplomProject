@@ -6,6 +6,7 @@ import com.example.diplom.repositories.CustomerRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,17 +41,12 @@ public class CustomerService {
     }
 
     public void create(CustomerDto customerDto) {
-        List<CustomerEntity> byPhoneNumber = customerRepo.findByPhoneNumber(customerDto.getPhoneNumber());
+        List<CustomerEntity> byPhoneNumber = customerRepo.findByPhoneNumber(customerDto.getPhoneNumber() );
         if (byPhoneNumber.isEmpty()) {
             init(customerDto.getName(), customerDto.getPhoneNumber());
         } else {
             throw new RuntimeException("such a phoneNumber already exists ");
         }
-    }
-
-    public void deleteCustomer(Long id) {
-        customerRepo.findById(id).orElseThrow(() -> new RuntimeException("There is no such customer"));
-        customerRepo.deleteById(id);
     }
 
     public void updateCustomer(Long customerId, String customerName, String phoneNumber) {
@@ -59,5 +55,15 @@ public class CustomerService {
         customerEntity.setPhoneNumber(phoneNumber);
         customerRepo.save(customerEntity);
 
+    }
+
+    public List<CustomerEntity> getByQuery(String name, String phone) {
+        if (phone!=null) {
+            return getByPhone(phone);
+        } else if (name!=null) {
+            return getByName(name);
+        } else {
+            return new ArrayList<>();
+        }
     }
 }
