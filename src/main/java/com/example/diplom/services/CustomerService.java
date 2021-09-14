@@ -2,6 +2,7 @@ package com.example.diplom.services;
 
 import com.example.diplom.dto.CustomerDto;
 import com.example.diplom.entities.CustomerEntity;
+import com.example.diplom.exceptions.PrivateException;
 import com.example.diplom.repositories.CustomerRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomerService {
 
+    private final String NOT_BE_NULL = "Id must be greater than null";
+    private final String NOT_BE_EMPTY = "This value must not be empty";
+
     private final CustomerRepo customerRepo;
 
     public List<CustomerEntity> getAllCustomers() {
@@ -21,46 +25,73 @@ public class CustomerService {
     }
 
     public List<CustomerEntity> getByPhone(String phone) {
-        return customerRepo.findByPhoneNumber(phone);
+        if (phone.isEmpty()) {
+            throw new PrivateException(NOT_BE_EMPTY);
+        } else {
+
+            return customerRepo.findByPhoneNumber(phone);
+        }
     }
 
-    // TODO: 07.09.2021 delete method
     public void init(String customerName, String phoneNumber) {
-        CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setName(customerName);
-        customerEntity.setPhoneNumber(phoneNumber);
-        customerRepo.save(customerEntity);
+
+        if (customerName.isEmpty() || phoneNumber.isEmpty()) {
+            throw new PrivateException(NOT_BE_EMPTY);
+        } else {
+            CustomerEntity customerEntity = new CustomerEntity();
+            customerEntity.setName(customerName);
+            customerEntity.setPhoneNumber(phoneNumber);
+            customerRepo.save(customerEntity);
+        }
     }
 
     public Optional<CustomerEntity> findById(Long id) {
-        return customerRepo.findById(id);
+        if (id <= 0) {
+            throw new PrivateException(NOT_BE_NULL);
+        } else {
+
+            return customerRepo.findById(id);
+        }
     }
 
     public List<CustomerEntity> getByName(String name) {
-        return customerRepo.findByName(name);
+        if (name.isEmpty()) {
+            throw new PrivateException(NOT_BE_EMPTY);
+        } else {
+
+            return customerRepo.findByName(name);
+        }
     }
 
     public void create(CustomerDto customerDto) {
-        List<CustomerEntity> byPhoneNumber = customerRepo.findByPhoneNumber(customerDto.getPhoneNumber() );
-        if (byPhoneNumber.isEmpty()) {
-            init(customerDto.getName(), customerDto.getPhoneNumber());
+        if (customerDto.getPhoneNumber().isEmpty() || customerDto.getName().isEmpty()) {
+            throw new PrivateException(NOT_BE_EMPTY);
         } else {
-            throw new RuntimeException("such a phoneNumber already exists ");
+            List<CustomerEntity> byPhoneNumber = customerRepo.findByPhoneNumber(customerDto.getPhoneNumber());
+            if (byPhoneNumber.isEmpty()) {
+                init(customerDto.getName(), customerDto.getPhoneNumber());
+            } else {
+                throw new PrivateException("such a phoneNumber already exists ");
+            }
         }
     }
 
     public void updateCustomer(Long customerId, String customerName, String phoneNumber) {
-        CustomerEntity customerEntity = customerRepo.findById(customerId).orElseThrow(() -> new RuntimeException("There is no such customer"));
-        customerEntity.setName(customerName);
-        customerEntity.setPhoneNumber(phoneNumber);
-        customerRepo.save(customerEntity);
+        if (customerId <= 0) {
+            throw new PrivateException(NOT_BE_NULL);
+        } else {
+            CustomerEntity customerEntity = customerRepo.findById(customerId).orElseThrow(() -> new RuntimeException("There is no such customer"));
+            customerEntity.setName(customerName);
+            customerEntity.setPhoneNumber(phoneNumber);
+            customerRepo.save(customerEntity);
+        }
 
     }
 
     public List<CustomerEntity> getByQuery(String name, String phone) {
-        if (phone!=null) {
+        if (phone != null) {
             return getByPhone(phone);
-        } else if (name!=null) {
+        } else if (name != null) {
             return getByName(name);
         } else {
             return new ArrayList<>();
