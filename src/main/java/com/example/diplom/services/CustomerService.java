@@ -45,12 +45,12 @@ public class CustomerService {
         }
     }
 
-    public Optional<CustomerEntity> findById(Long id) {
+    public CustomerEntity findById(Long id) {
         if (id <= 0) {
             throw new PrivateException(NOT_BE_NULL);
         } else {
 
-            return customerRepo.findById(id);
+            return customerRepo.findById(id).orElse(null);
         }
     }
 
@@ -67,12 +67,7 @@ public class CustomerService {
         if (customerDto.getPhoneNumber().isEmpty() || customerDto.getName().isEmpty()) {
             throw new PrivateException(NOT_BE_EMPTY);
         } else {
-            List<CustomerEntity> byPhoneNumber = customerRepo.findByPhoneNumber(customerDto.getPhoneNumber());
-            if (byPhoneNumber.isEmpty()) {
-                init(customerDto.getName(), customerDto.getPhoneNumber());
-            } else {
-                throw new PrivateException("such a phoneNumber already exists ");
-            }
+            init(customerDto.getName(), customerDto.getPhoneNumber());
         }
     }
 
