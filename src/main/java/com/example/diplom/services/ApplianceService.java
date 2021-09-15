@@ -28,11 +28,11 @@ public class ApplianceService {
         return applianceRepo.findAll();
     }
 
-    public Optional<ApplianceEntity> findById(Long id) {
+    public ApplianceEntity findById(Long id) {
         if (id <= 0) {
             throw new PrivateException(NOT_BE_NULL);
         } else {
-            return applianceRepo.findById(id);
+            return applianceRepo.findById(id).orElse(null);
         }
     }
 

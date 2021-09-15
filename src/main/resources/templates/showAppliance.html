@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Appliance</title>
+</head>
+<body>
+<p th:text="${appliance.getId()}">VALUE</p>
+<p th:text="${appliance.getType()}">VALUE</p>
+<p th:text="${appliance.getModel()}">VALUE</p>
+
+<a th:href="@{/applianceWeb/{id}/edit(id=${appliance.getId()})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/applianceWeb/delete/{id}(id=${appliance.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

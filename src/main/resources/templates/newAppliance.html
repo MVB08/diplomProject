@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> New appliance</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/applianceWeb}" th:object="${appliance}">
+    <label for="model">Enter model: </label>
+    <input type="text" th:field="*{model}" id="model"/>
+<!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>-->
+    <br/>
+    <br/>
+    <label for="type">Enter type: </label>
+    <input type="text" th:field="*{type}" id="type"/>
+<!--    <div style="color:red" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position error</div>-->
+
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

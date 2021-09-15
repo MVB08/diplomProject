@@ -26,7 +26,7 @@ public class AppliancesController {
     }
 
     @GetMapping("/{id}")
-    public Optional<ApplianceEntity> getById(@PathVariable Long id) {
+    public ApplianceEntity getById(@PathVariable Long id) {
 
         return applianceService.findById(id);
     }

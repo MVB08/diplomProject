@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All appliances</title>
+</head>
+<body>
+
+
+<div th:each="appliance:${allAppliance}">
+    <a th:href="@{/applianceWeb/{id}(id=${appliance.getId()})}" th:text="${appliance.getType()+','+appliance.getModel()}">appliance</a>
+
+</div>
+
+<br/>
+<hr/>
+
+<a href="/applianceWeb/new">Create new appliance</a>
+
+</body>
+</html>

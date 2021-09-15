@@ -18,14 +18,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/work")
-public class FrontEndController {
+public class FrontWorkerController {
 
     private final WorkerDto workerDto;
     private final WorkerService workerService;
     private final WorkerRepo workerRepo;
 
     @Autowired
-    public FrontEndController(WorkerRepo workerRepo, WorkerService workerService, WorkerDto workerDto) {
+    public FrontWorkerController(WorkerRepo workerRepo, WorkerService workerService, WorkerDto workerDto) {
         this.workerRepo = workerRepo;
         this.workerService = workerService;
         this.workerDto = workerDto;
