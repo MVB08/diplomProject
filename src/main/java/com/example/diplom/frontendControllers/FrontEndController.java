@@ -31,24 +31,6 @@ public class FrontEndController {
         this.workerDto = workerDto;
     }
 
-
-//    @GetMapping("/")
-//    public String index(Model model){
-//        model.addAttribute("worker", new WorkerEntity(1L, "qwe", "asd", "123",
-//                List.of(new OrderEntity(1L, null, null),
-//                new OrderEntity(2L, null, null)
-//        )));
-//        return "index";
-//   }
-//    @GetMapping("/createWorker")
-//    public String worker(){
-//        return "worker";
-//    }
-//    @GetMapping("/createCustomer")
-//    public String customer(){
-//        return "customer";
-//    }
-
     @GetMapping("/workers")
     public String getWorker(Model model) {
         model.addAttribute("workers", workerService.getAllWorkers());
