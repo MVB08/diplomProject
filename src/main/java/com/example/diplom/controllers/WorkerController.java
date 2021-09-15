@@ -28,7 +28,7 @@ public class WorkerController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<WorkerEntity> getById(@PathVariable Long id) {
+    public WorkerEntity getById(@PathVariable Long id) {
         return workerService.getById(id);
     }
 
@@ -52,7 +52,7 @@ public class WorkerController {
         return "Worker deleted";
     }
 
-    @PutMapping("/update/{id}/{name}/{position}/{phoneNumber}")
+    @PatchMapping("/update/{id}/{name}/{position}/{phoneNumber}")
     private String updateWorker(@PathVariable Long id, @PathVariable String name, @PathVariable String position, @PathVariable String phoneNumber) {
         workerService.updateWorker(id, name, position, phoneNumber);
         return "Worker updating";

@@ -27,11 +27,11 @@ public class WorkerService {
     }
 
 
-    public Optional<WorkerEntity> getById(Long id) {
+    public WorkerEntity getById(Long id) {
         if (id <= 0) {
             throw new PrivateException(NOT_BE_NULL);
         } else {
-            return workerRepo.findById(id);
+            return workerRepo.findById(id).orElse(null);
         }
     }
 
@@ -69,6 +69,7 @@ public class WorkerService {
         } else {
             throw new PrivateException("such a phoneNumber already exists ");
         }
+
     }
 
     public void deleteWorker(Long id) {
@@ -76,7 +77,7 @@ public class WorkerService {
         workerRepo.deleteById(id);
     }
 
-    public void updateWorker(Long workerId, String name, String position, String phoneNumber) {
+    public WorkerEntity updateWorker(Long workerId, String name, String position, String phoneNumber) {
         if (name.isEmpty() && position.isEmpty() && phoneNumber.isEmpty()) {
             throw new PrivateException(NOT_BE_EMPTY);
         } else if (workerId <= 0) {
@@ -86,7 +87,7 @@ public class WorkerService {
             workerEntity.setName(name);
             workerEntity.setPosition(position);
             workerEntity.setPhoneNumber(phoneNumber);
-            workerRepo.save(workerEntity);
+           return workerRepo.save(workerEntity);
         }
     }
 

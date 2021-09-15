@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All workers</title>
+</head>
+<body>
+
+
+<div th:each="worker:${workers}">
+      <a th:href="@{/work/{id}(id=${worker.getId()})}" th:text="${worker.getName()}">user</a>
+
+</div>
+
+<br/>
+<hr/>
+
+<a href="/work/new">Create new worker</a>
+
+</body>
+</html>
