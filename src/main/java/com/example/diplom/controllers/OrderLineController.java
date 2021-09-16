@@ -25,7 +25,7 @@ public class OrderLineController {
     }
 
     @GetMapping("/{numberOfLine}")
-    public Optional<OrderLine> getByLine(@PathVariable Long numberOfLine) {
+    public OrderLine getByLine(@PathVariable Long numberOfLine) {
         return orderLineService.getById(numberOfLine);
     }
 

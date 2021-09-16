@@ -20,11 +20,11 @@ public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long numberOfLine;
-//    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "appliance_id")
-    private ApplianceEntity applianceEntity;
-//    @JsonIgnore
+    public ApplianceEntity applianceEntity;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     private OrderEntity orderEntity;

@@ -42,11 +42,11 @@ public class OrderLineService {
         return orderLineRepo.findAll();
     }
 
-    public Optional<OrderLine> getById(Long numberOfLine) {
+    public OrderLine getById(Long numberOfLine) {
         if (numberOfLine <= 0) {
             throw new PrivateException(NOT_BE_NULL);
         } else {
-            return orderLineRepo.findById(numberOfLine);
+            return orderLineRepo.findById(numberOfLine).orElse(null);
         }
     }
 

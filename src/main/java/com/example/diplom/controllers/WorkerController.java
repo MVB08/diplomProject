@@ -52,7 +52,7 @@ public class WorkerController {
         return "Worker deleted";
     }
 
-    @PatchMapping("/update/{id}/{name}/{position}/{phoneNumber}")
+    @PutMapping("/update/{id}/{name}/{position}/{phoneNumber}")
     private String updateWorker(@PathVariable Long id, @PathVariable String name, @PathVariable String position, @PathVariable String phoneNumber) {
         workerService.updateWorker(id, name, position, phoneNumber);
         return "Worker updating";
