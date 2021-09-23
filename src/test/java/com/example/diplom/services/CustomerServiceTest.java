@@ -4,6 +4,7 @@ import com.example.diplom.dto.ApplianceDto;
 import com.example.diplom.dto.CustomerDto;
 import com.example.diplom.entities.ApplianceEntity;
 import com.example.diplom.entities.CustomerEntity;
+import com.example.diplom.exceptions.PrivateException;
 import com.example.diplom.repositories.CustomerRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -76,6 +77,7 @@ public class CustomerServiceTest {
         customerService.init( "4", "777");
         assertNotNull(customerRepo.findById(20L));
     }
+
 
     @Test
     public void findById() {

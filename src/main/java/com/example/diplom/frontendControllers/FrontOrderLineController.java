@@ -45,31 +45,6 @@ public class FrontOrderLineController {
         return "showOrderLine";
     }
 
-//    @GetMapping("/new")
-//    public String newCustomer(Model model) {
-//        model.addAttribute("customer", new CustomerDto());
-//        return "newCustomer";
-//    }
-//
-//    @PostMapping()
-//    public String createCustomer(@ModelAttribute("customer") @Valid CustomerDto customer) {
-//
-//        customerService.create(customer);
-//        return "redirect:/customerWeb/all";
-//    }
-//
-//    @GetMapping("/{id}/edit")
-//    public String editCustomer(Model model, @PathVariable Long id) {
-//        model.addAttribute("customer", customerService.findById(id));
-//        return "editCustomer";
-//    }
-//
-//    @PatchMapping("/edit/{id}")
-//    public String updateCustomer(@ModelAttribute("customer") @Valid CustomerEntity customer,
-//                                 @PathVariable Long id) {
-//
-//        customerService.updateCustomer(id, customer.getName(), customer.getPhoneNumber());
-//        return "redirect:/customerWeb/all";
-//    }
+
 
 }
